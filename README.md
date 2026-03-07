@@ -1,48 +1,39 @@
-# Use Case 2: Room Search & Availability Check
+# Use Case 3: Booking Request (First-Come-First-Served)
 
 ## Overview
 
-The **Room Search & Availability Check** module allows guests to view available room types and check their availability without modifying the inventory.
+The Booking Request module ensures guest reservations are processed in **first-come-first-served (FIFO) order**, maintaining fairness during high-demand scenarios.
 
-This feature ensures that guests can search rooms quickly while maintaining **read-only access to the room inventory**.
-
-The system retrieves room information using efficient **HashMap lookups**, ensuring fast response times.
----
-# Example Operations
-
-### Initialize Inventory
-
-```
-Single → 10 rooms → ₹1000
-Double → 5 rooms → ₹1800
-Suite  → 0 rooms → ₹3500
-```
+A **Queue of Reservation objects** is used to manage booking requests and guarantees predictable, ordered processing.
 
 ---
+## Key Data Structures
 
-### Guest Searches Rooms
+* **Queue<Reservation> (LinkedList)**
+  Stores booking requests in arrival order (FIFO).
+## Example Operations
 
-Output:
+### Guests Submit Booking Requests
 
 ```
-Available Rooms:
+Alice → Single → 1
+Bob → Double → 2
+Charlie → Suite → 1
+```
 
-Room Type: Single
-Price: ₹1000
-Amenities: WiFi, TV
-Available Count: 10
+### Process Bookings in FIFO Order
 
-Room Type: Double
-Price: ₹1800
-Amenities: WiFi, TV, Mini Bar
-Available Count: 5
+```
+Processing booking for Alice (Single, Qty: 1)
+Processing booking for Bob (Double, Qty: 2)
+Processing booking for Charlie (Suite, Qty: 1)
+No bookings to process.
+```
+
+### Pending Requests
+
+```
+Pending bookings: 0
 ```
 
 ---
-
-### Check Specific Room Availability
-
-```
-Single rooms available: 10
-Suite is currently unavailable.
-```
