@@ -2,12 +2,13 @@ package com.seveneleven.bookmystay.service;
 
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.List;
+import java.util.ArrayList;
 
 import com.seveneleven.bookmystay.model.Reservation;
 
 /**
  * Service to handle booking requests in a first-come-first-served manner.
- * Uses a FIFO Queue to maintain order of arrival.
  */
 public class BookingService {
 
@@ -19,7 +20,6 @@ public class BookingService {
 
     /**
      * Adds a booking request to the queue.
-     * @param reservation Reservation object
      */
     public void addBookingRequest(Reservation reservation) {
         bookingQueue.offer(reservation);
@@ -40,9 +40,9 @@ public class BookingService {
     }
 
     /**
-     * Returns the number of pending booking requests.
+     * Returns the list of pending booking requests.
      */
-    public int pendingBookings() {
-        return bookingQueue.size();
+    public List<Reservation> pendingBookings() {
+        return new ArrayList<>(bookingQueue);
     }
 }

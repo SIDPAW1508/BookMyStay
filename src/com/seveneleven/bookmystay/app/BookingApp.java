@@ -12,9 +12,9 @@ public class BookingApp {
         BookingController controller = new BookingController();
 
         // Guests submit booking requests
-        controller.submitBooking("Alice", "Single", 1);
-        controller.submitBooking("Bob", "Double", 2);
-        controller.submitBooking("Charlie", "Suite", 1);
+        controller.submitBooking("Alice", "Single", 1, 1000);
+        controller.submitBooking("Bob", "Double", 2, 3600);
+        controller.submitBooking("Charlie", "Suite", 1, 3500);
 
         // Show pending requests
         controller.showPendingBookings();
